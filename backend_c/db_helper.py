@@ -1,4 +1,3 @@
-# This will interact with mysql database and perform crud operations
 
 import mysql.connector
 from contextlib import contextmanager
