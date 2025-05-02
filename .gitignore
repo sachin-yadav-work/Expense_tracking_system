@@ -77,3 +77,4 @@ coverage.xml
 *.swp
 *.bak
 *.orig
+.env

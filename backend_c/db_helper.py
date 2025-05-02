@@ -1,15 +1,19 @@
-
+from dotenv import load_dotenv
+import os
 import mysql.connector
 from contextlib import contextmanager
 from logger import get_logger
 
+load_dotenv()
 logger = get_logger('db_helper','expense_tracking.log')
 
 @contextmanager
 def get_cursor(commit = False):
     try:
-        connection = mysql.connector.connect(host = 'localhost', user = 'root',
-                                             password = 'rootroot',database = 'expense_manager')
+        connection = mysql.connector.connect(host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME"))
         cursor = connection.cursor(dictionary = True)
         logger.info('MySQL connection established')
         yield cursor
